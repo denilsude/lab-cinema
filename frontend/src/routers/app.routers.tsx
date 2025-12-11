@@ -4,6 +4,7 @@ import HomePages from "../pages/HomePages";
 import FilmePages from "../pages/FilmePages";
 import SalaPages from "../pages/SalaPages";
 import SessaoPages from "../pages/SessaoPages";
+import LanchePages from "../pages/LanchePages"; // Importação nova
 
 export default function AppRouters() {
   return (
@@ -14,6 +15,7 @@ export default function AppRouters() {
         <Route path="/filmes" element={<FilmePages />} />
         <Route path="/salas" element={<SalaPages />} />
         <Route path="/sessoes" element={<SessaoPages />} />
+        <Route path="/lanches" element={<LanchePages />} /> {/* Rota nova */}
       </Routes>
     </BrowserRouter>
   );

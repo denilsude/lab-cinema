@@ -16,4 +16,8 @@ export const SessaoService = {
     });
     return response.json();
   },
+
+  delete: async (id: string): Promise<void> => {
+    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  }
 };

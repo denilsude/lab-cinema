@@ -11,7 +11,7 @@ export default function HomePages() {
       </div>
 
       <div className="row g-4">
-        <div className="col-md-4">
+        <div className="col-md-3">
           <div className="card h-100 text-center border-primary shadow-sm">
             <div className="card-body">
               <i className="bi bi-film display-1 text-primary mb-3"></i>
@@ -24,7 +24,7 @@ export default function HomePages() {
           </div>
         </div>
 
-        <div className="col-md-4">
+        <div className="col-md-3">
           <div className="card h-100 text-center border-success shadow-sm">
             <div className="card-body">
               <i className="bi bi-door-open display-1 text-success mb-3"></i>
@@ -37,7 +37,7 @@ export default function HomePages() {
           </div>
         </div>
 
-        <div className="col-md-4">
+        <div className="col-md-3">
           <div className="card h-100 text-center border-warning shadow-sm">
             <div className="card-body">
               <i className="bi bi-ticket-perforated display-1 text-warning mb-3"></i>
@@ -45,6 +45,19 @@ export default function HomePages() {
               <p className="card-text">Agende sessões e venda ingressos</p>
               <Link to="/sessoes" className="btn btn-warning">
                 Gerenciar Sessões
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-md-3">
+          <div className="card h-100 text-center border-danger shadow-sm">
+            <div className="card-body">
+              <i className="bi bi-cup-straw display-1 text-danger mb-3"></i>
+              <h5 className="card-title">Lanches</h5>
+              <p className="card-text">Gerencie a bomboniere</p>
+              <Link to="/lanches" className="btn btn-danger">
+                Gerenciar Lanches
               </Link>
             </div>
           </div>

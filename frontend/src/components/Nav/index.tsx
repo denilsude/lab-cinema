@@ -1,4 +1,4 @@
-<Link className="navbar-brand" to="/" onClick={() => alert("🍿 Pipoca está cara, faz o L?")}>CineWeb 🍿</Link>
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
@@ -40,6 +40,12 @@ export default function Nav() {
               <Link className="nav-link" to="/sessoes">
                 <i className="bi bi-ticket-perforated me-1"></i>
                 Sessões
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/lanches">
+                <i className="bi bi-cup-straw me-1"></i>
+                Lanches
               </Link>
             </li>
           </ul>

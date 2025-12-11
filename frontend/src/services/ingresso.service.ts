@@ -1,32 +1,24 @@
 import { IIngresso } from "../models/ingresso.model";
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = "http://localhost:4000/ingressos";
 
-export class IngressosService {
-    private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-        const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+export const ingressosService = {
+    create: async (data: Omit<IIngresso, "id">): Promise<IIngresso> => {
+        const response = await fetch(API_URL, {
+            method: "POST",
             headers: { "Content-Type": "application/json" },
-            ...options,
+            body: JSON.stringify(data),
         });
 
         if (!response.ok) {
-            const msg = await response.text();
-            throw new Error(`Erro HTTP ${response.status}: ${msg}`);
+            throw new Error(`Erro HTTP ${response.status}`);
         }
 
-        return response.json() as Promise<T>;
-    }
+        return response.json();
+    },
 
-    async create(data: Omit<IIngresso, "id">): Promise<IIngresso> {
-        return this.request<IIngresso>("ingressos", {
-            method: "POST",
-            body: JSON.stringify(data),
-        });
+    findAll: async (): Promise<IIngresso[]> => {
+        const response = await fetch(API_URL);
+        return response.json();
     }
-
-    async findAll(): Promise<IIngresso[]> {
-        return this.request<IIngresso[]>("ingressos");
-    }
-}
-
-export const ingressosService = new IngressosService();
+};
