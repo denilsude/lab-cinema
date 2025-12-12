@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ingressosService } from "../../../services/ingresso.service";
-import type { ISessao } from "../../../models/sessao.model";
+import type { Sessao } from "../../../models/sessao.model";
 
 interface Props {
-    sessao: ISessao;
+    sessao: Sessao;
     filmeNome: string;
     salaNumero: number;
     onClose: () => void;

@@ -1,7 +1,6 @@
 export interface Sessao {
-  id: string;
+  id?: string;
   filmeId: string;
   salaId: string;
-  data: string;
-  horario: string;
+  dataHora: string;
 }

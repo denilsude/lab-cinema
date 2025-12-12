@@ -7,9 +7,7 @@ import { z } from "zod";
 const sessaoSchema = z.object({
   filmeId: z.string().min(1, "Selecione um filme"),
   salaId: z.string().min(1, "Selecione uma sala"),
-  data: z.string().min(1, "Data é obrigatória").refine((date) => {
-    return new Date(date) >= new Date(new Date().setHours(0, 0, 0, 0));
-  }, "A data não pode ser retroativa"),
+  data: z.string().min(1, "Data é obrigatória"),
   horario: z.string().min(1, "Horário é obrigatório"),
 });
 
@@ -34,7 +32,13 @@ export default function SessaoForm({ filmes, salas, onSessaoAdded }: SessaoFormP
     try {
       const validatedData = sessaoSchema.parse(form);
 
-      await SessaoService.create(validatedData);
+      // ✅ CORREÇÃO: Combinar data + horário
+      await SessaoService.create({
+        filmeId: validatedData.filmeId,
+        salaId: validatedData.salaId,
+        dataHora: `${validatedData.data}T${validatedData.horario}:00`
+      });
+
       setForm({ filmeId: "", salaId: "", data: "", horario: "" });
       setErrors({});
       onSessaoAdded();

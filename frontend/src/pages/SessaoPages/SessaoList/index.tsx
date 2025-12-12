@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Button } from "../../../components/Button";
 import { VendaIngressoModal } from "./VendaIngressoModal";
-
-import type { ISessao } from "../../../models/sessao.model";
-import type { IFilme } from "../../../models/filme.model";
-import type { ISala } from "../../../models/sala.model";
+import type { Sessao } from "../../../models/sessao.model";
+import type { Filme } from "../../../models/filme.model";
+import type { Sala } from "../../../models/sala.model";
 
 interface Props {
-    sessoes: ISessao[];
-    filmes: IFilme[];
-    salas: ISala[];
-    onEdit: (sessao: ISessao) => void;
+    sessoes: Sessao[];
+    filmes: Filme[];
+    salas: Sala[];
+    onEdit: (sessao: Sessao) => void;
     onDelete: (id: string) => void;
-    sessaoEmEdicao: ISessao | null;
+    sessaoEmEdicao: Sessao | null;
 }
 
 export const SessaoTable = ({
@@ -24,7 +23,7 @@ export const SessaoTable = ({
     sessaoEmEdicao
 }: Props) => {
 
-    const [sessaoVenda, setSessaoVenda] = useState<ISessao | null>(null);
+    const [sessaoVenda, setSessaoVenda] = useState<Sessao | null>(null);
 
     const getNomeFilme = (id: string) =>
         filmes.find(f => f.id === id)?.titulo || "N/D";
