@@ -27,7 +27,9 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
             });
 
             await LancheService.create(validatedData as any);
-            setForm({ nome: "",Qlpreco: "", tipo: "comida" });
+            
+            // ✅ CORREÇÃO: Mudou de "Qlpreco" para "preco"
+            setForm({ nome: "", preco: "", tipo: "comida" });
             setErrors({});
             onLancheAdded();
             alert("Lanche cadastrado com sucesso!");
@@ -40,6 +42,9 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                     }
                 });
                 setErrors(newErrors);
+            } else {
+                console.error("Erro ao cadastrar lanche:", error);
+                alert("Erro ao cadastrar lanche. Verifique o console.");
             }
         }
     };
@@ -52,7 +57,7 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
             <div className="card-body">
                 <form onSubmit={handleSubmit}>
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-4 mb-3">
                             <Input
                                 label="Nome"
                                 id="nome"
@@ -63,7 +68,7 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                                 error={errors.nome}
                             />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-4 mb-3">
                             <Input
                                 label="Preço (R$)"
                                 id="preco"
@@ -74,10 +79,10 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                                 error={errors.preco}
                             />
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-4 mb-3">
                             <label className="form-label">Tipo</label>
                             <select
-                                className="form-select"
+                                className={`form-select ${errors.tipo ? 'is-invalid' : ''}`}
                                 value={form.tipo}
                                 onChange={(e) => setForm({ ...form, tipo: e.target.value })}
                             >
@@ -85,10 +90,16 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                                 <option value="bebida">Bebida</option>
                                 <option value="combo">Combo</option>
                             </select>
+                            {errors.tipo && <div className="invalid-feedback">{errors.tipo}</div>}
                         </div>
                     </div>
                     <div className="mt-3">
-                        <Button value="Salvar Lanche" type="submit" variant="danger" onClick={() => {}} />
+                        <Button 
+                            value="Salvar Lanche" 
+                            type="submit" 
+                            variant="danger" 
+                            onClick={() => {}} 
+                        />
                     </div>
                 </form>
             </div>
