@@ -3,3 +3,6 @@ export interface Sala {
   numero: number;
   capacidade: number;
 }
+
+// Alias para compatibilidade
+export type ISala = Sala;

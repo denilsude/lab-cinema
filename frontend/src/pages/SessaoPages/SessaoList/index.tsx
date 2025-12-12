@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "../../../components/Button";
 import { VendaIngressoModal } from "./VendaIngressoModal";
-import type { Sessao } from "../../../models/sessao.model";
-import type { Filme } from "../../../models/filme.model";
-import type { Sala } from "../../../models/sala.model";
+import { Sessao } from "../../../models/sessao.model";
+import { Filme } from "../../../models/filme.model";
+import { Sala } from "../../../models/sala.model";
 
 interface Props {
     sessoes: Sessao[];
@@ -33,49 +33,61 @@ export const SessaoTable = ({
 
     return (
         <>
-            <table className="table table-striped shadow-sm mt-3">
-                <thead className="table-dark">
-                    <tr>
-                        <th>Filme</th>
-                        <th>Sala</th>
-                        <th>Data/Horário</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sessoes.map(sessao => {
-                        const disable = !!sessaoEmEdicao;
-
-                        return (
-                            <tr key={sessao.id}>
-                                <td>{getNomeFilme(sessao.filmeId)}</td>
-                                <td>Sala {getNumeroSala(sessao.salaId)}</td>
-                                <td>{new Date(sessao.dataHora).toLocaleString("pt-BR")}</td>
-                                <td className="d-flex gap-2">
-                                    <Button
-                                        variant="success"
-                                        value="Vender"
-                                        onClick={() => setSessaoVenda(sessao)}
-                                        disabled={disable}
-                                    />
-                                    <Button
-                                        variant="warning"
-                                        value="Editar"
-                                        onClick={() => onEdit(sessao)}
-                                        disabled={disable}
-                                    />
-                                    <Button
-                                        variant="danger"
-                                        value="Excluir"
-                                        onClick={() => onDelete(sessao.id!)}
-                                        disabled={disable}
-                                    />
-                                </td>
+            <div className="card">
+                <div className="card-header bg-secondary text-white">
+                    <h5 className="mb-0">📋 Sessões Agendadas</h5>
+                </div>
+                <div className="card-body p-0">
+                    <table className="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Filme</th>
+                                <th>Sala</th>
+                                <th>Data/Horário</th>
+                                <th className="text-end">Ações</th>
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {sessoes.map(sessao => {
+                                const disable = !!sessaoEmEdicao;
+
+                                return (
+                                    <tr key={sessao.id}>
+                                        <td>{getNomeFilme(sessao.filmeId)}</td>
+                                        <td>Sala {getNumeroSala(sessao.salaId)}</td>
+                                        <td>{new Date(sessao.dataHora).toLocaleString("pt-BR")}</td>
+                                        <td>
+                                            <div className="d-flex justify-content-end gap-2">
+                                                <button
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => setSessaoVenda(sessao)}
+                                                    disabled={disable}
+                                                >
+                                                    <i className="bi bi-ticket me-1"></i>Vender
+                                                </button>
+                                                <button
+                                                    className="btn btn-warning btn-sm"
+                                                    onClick={() => onEdit(sessao)}
+                                                    disabled={disable}
+                                                >
+                                                    <i className="bi bi-pencil me-1"></i>Editar
+                                                </button>
+                                                <button
+                                                    className="btn btn-danger btn-sm"
+                                                    onClick={() => onDelete(sessao.id!)}
+                                                    disabled={disable}
+                                                >
+                                                    <i className="bi bi-trash me-1"></i>Excluir
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             {sessaoVenda && (
                 <VendaIngressoModal

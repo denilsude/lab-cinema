@@ -4,3 +4,6 @@ export interface Sessao {
   salaId: string;
   dataHora: string;
 }
+
+// Alias para compatibilidade
+export type ISessao = Sessao;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Sessao } from "../../models/sessao.model";
-import type { Filme } from "../../models/filme.model";
-import type { Sala } from "../../models/sala.model";
+import { Sessao } from "../../models/sessao.model";
+import { Filme } from "../../models/filme.model";
+import { Sala } from "../../models/sala.model";
 
 import { SessaoService } from "../../services/sessao.service";
 import { FilmeService } from "../../services/filme.service";
@@ -28,6 +28,7 @@ export default function SessaoPages() {
             setSalas(listaSalas);
         } catch (error) {
             console.error("Erro ao carregar dados:", error);
+            alert("Erro ao carregar dados. Verifique se o json-server está rodando.");
         }
     };
 
@@ -36,10 +37,11 @@ export default function SessaoPages() {
     }, []);
 
     const handleDelete = async (id: string) => {
-        if (confirm("Tem certeza que deseja cancelar esta sessão?")) {
+        if (window.confirm("Tem certeza que deseja cancelar esta sessão?")) {
             try {
                 await SessaoService.delete(id);
                 setSessoes(prev => prev.filter(s => s.id !== id));
+                alert("Sessão excluída com sucesso!");
             } catch (error) {
                 console.error("Erro ao excluir:", error);
                 alert("Erro ao excluir sessão.");
@@ -49,8 +51,7 @@ export default function SessaoPages() {
 
     const handleEdit = (sessao: Sessao) => {
         setSessaoEmEdicao(sessao);
-        console.log("Editar:", sessao);
-        alert("Edição selecionada (implementação visual).");
+        alert("Funcionalidade de edição em desenvolvimento.");
     };
 
     return (
@@ -63,14 +64,20 @@ export default function SessaoPages() {
                 onSessaoAdded={carregarTudo} 
             />
 
-            <SessaoTable
-                sessoes={sessoes}
-                filmes={filmes}
-                salas={salas}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                sessaoEmEdicao={sessaoEmEdicao}
-            />
+            {sessoes.length > 0 ? (
+                <SessaoTable
+                    sessoes={sessoes}
+                    filmes={filmes}
+                    salas={salas}
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                    sessaoEmEdicao={sessaoEmEdicao}
+                />
+            ) : (
+                <div className="alert alert-info mt-3">
+                    Nenhuma sessão cadastrada ainda.
+                </div>
+            )}
         </div>
     );
 }
