@@ -1,7 +1,9 @@
 export interface Sessao {
-  id: string;
+  id?: string;
   filmeId: string;
   salaId: string;
-  data: string;
-  horario: string;
+  dataHora: string;
 }
+
+// Alias para compatibilidade
+export type ISessao = Sessao;

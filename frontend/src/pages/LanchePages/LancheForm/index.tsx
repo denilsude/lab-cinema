@@ -58,6 +58,7 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                 <form onSubmit={handleSubmit}>
                     <div className="row">
                         <div className="col-md-4 mb-3">
+                        <div className="col-md-4 mb-3">
                             <Input
                                 label="Nome"
                                 id="nome"
@@ -69,6 +70,7 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                             />
                         </div>
                         <div className="col-md-4 mb-3">
+                        <div className="col-md-4 mb-3">
                             <Input
                                 label="Preço (R$)"
                                 id="preco"
@@ -77,11 +79,14 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                                 value={form.preco}
                                 onChange={(val) => setForm({ ...form, preco: val })}
                                 error={errors.preco}
+                                placeholder="0.00"
                             />
                         </div>
                         <div className="col-md-4 mb-3">
+                        <div className="col-md-4 mb-3">
                             <label className="form-label">Tipo</label>
                             <select
+                                className={`form-select ${errors.tipo ? 'is-invalid' : ''}`}
                                 className={`form-select ${errors.tipo ? 'is-invalid' : ''}`}
                                 value={form.tipo}
                                 onChange={(e) => setForm({ ...form, tipo: e.target.value })}
@@ -91,9 +96,16 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                                 <option value="combo">Combo</option>
                             </select>
                             {errors.tipo && <div className="invalid-feedback">{errors.tipo}</div>}
+                            {errors.tipo && <div className="invalid-feedback">{errors.tipo}</div>}
                         </div>
                     </div>
                     <div className="mt-3">
+                        <Button 
+                            value="Salvar Lanche" 
+                            type="submit" 
+                            variant="danger" 
+                            onClick={() => {}} 
+                        />
                         <Button 
                             value="Salvar Lanche" 
                             type="submit" 

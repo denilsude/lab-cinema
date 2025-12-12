@@ -17,6 +17,15 @@ export const SessaoService = {
     return response.json();
   },
 
+  update: async (id: string, sessao: Partial<Sessao>): Promise<Sessao> => {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sessao),
+    });
+    return response.json();
+  },
+
   delete: async (id: string): Promise<void> => {
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
   }
