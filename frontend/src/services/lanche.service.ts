@@ -1,4 +1,4 @@
-import { ILanche } from "../models/lanche.model";
+import type { ILanche } from "../models/lanche.model";
 
 const API_URL = "http://localhost:4000/lanches";
 

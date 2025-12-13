@@ -1,9 +1,8 @@
 export interface Sessao {
-  id?: string;
+  id?: string; // ✅ JÁ ESTÁ CORRETO
   filmeId: string;
   salaId: string;
   dataHora: string;
 }
 
-// Alias para compatibilidade
 export type ISessao = Sessao;

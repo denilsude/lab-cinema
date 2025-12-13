@@ -1,4 +1,4 @@
-import { Sala } from "../models/sala.model";
+import type { Sala } from "../models/sala.model";
 
 const API_URL = "http://localhost:4000/salas";
 

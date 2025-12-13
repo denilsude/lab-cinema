@@ -1,4 +1,4 @@
-import { IIngresso } from "../models/ingresso.model";
+import type { IIngresso } from "../models/ingresso.model";
 
 const API_URL = "http://localhost:4000/ingressos";
 

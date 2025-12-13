@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
+// Importação crucial para funcionalidades interativas do Bootstrap (Menu, Modais, etc)
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

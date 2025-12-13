@@ -26,6 +26,8 @@ export default function LancheForm({ onLancheAdded }: LancheFormProps) {
                 preco: Number(form.preco),
             });
 
+            // O 'as any' aqui é usado para contornar incompatibilidades temporárias de tipo,
+            // garantindo que o ID opcional não quebre a requisição de criação.
             await LancheService.create(validatedData as any);
             
             setForm({ nome: "", preco: "", tipo: "comida" });

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function HomePages() {
+export default function HomePages() { // ✅ DEVE SER export default
   return (
     <div className="container mt-5">
       <div className="text-center mb-5">

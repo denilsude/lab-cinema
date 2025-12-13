@@ -1,4 +1,4 @@
-import { Sessao } from "../models/sessao.model";
+import type { Sessao } from "../models/sessao.model";
 
 const API_URL = "http://localhost:4000/sessoes";
 

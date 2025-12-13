@@ -1,4 +1,4 @@
-import { Filme } from "../models/filme.model";
+import type { Filme } from "../models/filme.model";
 
 const API_URL = "http://localhost:4000/filmes";
 

@@ -1,5 +1,5 @@
 export interface Filme {
-  id?: string;
+  id?: string; // ✅ JÁ ESTÁ CORRETO
   titulo: string;
   sinopse: string;
   classificacao: string;
@@ -9,5 +9,4 @@ export interface Filme {
   dataFim: string;
 }
 
-// Alias para compatibilidade
 export type IFilme = Filme;
