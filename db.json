@@ -1,0 +1,6 @@
+{
+  "salas": [
+    { "id": 1, "nome": "Sala 1" },
+    { "id": 2, "nome": "Sala 2" }
+  ]
+}
